@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="ColorGradientView.Views.ColorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ColorGradientView.Views"
+             xmlns:vm="clr-namespace:ColorGradientView.ViewModels"
+             mc:Ignorable="d" 
+             Width="180"
+             d:DataContext="{d:DesignInstance Type=vm:ColorItem}">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+        <vm:ColorToBrushConverter x:Key="BrushConverter" />
+        <vm:ColorToTextConverter x:Key="TextConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0"
+                 IsReadOnly="False"
+                 Text="{Binding Path=Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Grid Grid.Row="1" Background="{Binding Path=Color100.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Foreground="White" Text="{Binding Path=Color100.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}" />
+        </Grid>
+        <Grid Grid.Row="2" Background="{Binding Path=Color200.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Foreground="White" Text="{Binding Path=Color200.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="3" Background="{Binding Path=Color300.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Foreground="White" Text="{Binding Path=Color300.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="4" Background="{Binding Path=Color400.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Text="{Binding Path=Color400.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="5" Background="{Binding Path=Color500.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Text="{Binding Path=Color500.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="6" Background="{Binding Path=Color600.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Text="{Binding Path=Color600.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="7" Background="{Binding Path=Color700.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Text="{Binding Path=Color700.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="8" Background="{Binding Path=Color800.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Text="{Binding Path=Color800.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+        <Grid Grid.Row="9" Background="{Binding Path=Color900.Value, Converter={StaticResource BrushConverter}, FallbackValue=Transparent}">
+            <TextBox Text="{Binding Path=Color900.Value, Mode=OneWay, Converter={StaticResource TextConverter}, FallbackValue=''}"/>
+        </Grid>
+    </Grid>
+</UserControl>

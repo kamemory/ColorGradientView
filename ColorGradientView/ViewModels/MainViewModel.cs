@@ -16,18 +16,20 @@ namespace ColorGradientView.ViewModels
         {
             this.Colors = new ObservableCollection<ColorItem>();
             this.AddColor = new RelayCommand(this.OnAddColor);
+            this.SaveColors = new RelayCommand(this.OnSaveColors);
+            this.LoadColors = new RelayCommand(this.OnLoadColors);
         }
 
         public void Init()
         {
-            Config c = Config.Load();
-            foreach (string item in c.Colors)
-            {
-                this.Colors.Add(new ColorItem(item));
-            }
+            this.OnLoadColors();
         }
 
         public ICommand AddColor { get; private set; }
+
+        public ICommand SaveColors {  get; private set; }
+
+        public ICommand LoadColors { get; private set; }
 
         public ObservableCollection<ColorItem> Colors { get; private set; }
 
@@ -38,6 +40,25 @@ namespace ColorGradientView.ViewModels
             int g = Random.Shared.Next(256);
             int b = Random.Shared.Next(256);
             this.Colors.Add(new ColorItem(r, g, b));
+        }
+
+        private void OnSaveColors()
+        {
+            List<string> colorText = this.Colors
+                .Select(p => p.Color500.ToString())
+                .ToList();
+            Config.Save(colorText);
+        }
+
+        private void OnLoadColors()
+        {
+            this.Colors.Clear();
+
+            Config c = Config.Load();
+            foreach (string item in c.Colors)
+            {
+                this.Colors.Add(new ColorItem(item));
+            }
         }
     }
 }

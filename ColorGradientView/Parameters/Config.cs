@@ -23,5 +23,13 @@ namespace ColorGradientView.Parameters
             }
             return c;
         }
+
+        public static void Save(List<string> colors)
+        {
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
+            string path = Path.Combine(dir, "config.txt");
+
+            File.WriteAllLines(path, colors);
+        }
     }
 }

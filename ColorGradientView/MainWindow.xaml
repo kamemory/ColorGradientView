@@ -45,5 +45,18 @@
                 HorizontalAlignment="Left"
                 Command="{Binding Path=AddColor}"
                 Content="追加" />
+
+        <StackPanel Grid.Row="1"
+                    Margin="0,8,8,8"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Padding="16,6"
+                    Content="W"
+                    Command="{Binding Path=SaveColors}"/>
+            <Button Padding="16,6"
+                    Margin="8,0,0,0"
+                    Content="R"
+                    Command="{Binding Path=LoadColors}"/>
+        </StackPanel>
     </Grid>
 </Window>

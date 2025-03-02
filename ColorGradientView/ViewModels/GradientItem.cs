@@ -45,6 +45,11 @@ namespace ColorGradientView.ViewModels
             this.Value = Color.FromRgb(rx, gx, bx);
         }
 
+        public override string ToString()
+        {
+            return string.Format("#{0:x2}{1:x2}{2:x2}", this._color.R, this._color.G, this._color.B);
+        }
+
         private byte AdjustLowerValue(int v, int rate)
         {
             return (byte)(v / 5.0 * rate);
